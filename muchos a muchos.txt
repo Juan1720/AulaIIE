@@ -1,0 +1,22 @@
+
+@ManyToMany(mappedBy = "aula", cascade = {CascadeType.PERSIST,CascadeType.MERGE})
+private List<Alumnos> alumno = new ArrayList<>();
+
+
+@ManyToMany( cascade = {CascadeType.PERSIST,CascadeType.MERGE})
+	@JoinTable(
+			name = "aula_alumno",
+			joinColumns = @JoinColumn(
+					name = "id_alumno",
+					nullable = false,
+					unique = true,
+					foreignKey = 
+					@ForeignKey(foreignKeyDefinition = "foreign key (id_alumno) references alumnos(id_Alumno)")),
+			inverseJoinColumns = @JoinColumn(
+					name = "id_aula",
+					nullable = false,
+					unique = true,
+					foreignKey = 
+					@ForeignKey(foreignKeyDefinition = "foreign key (id_aula) references aulas(id_aula)"))
+			)
+	private List<Aula> aula = new ArrayList<>();
